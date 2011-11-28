@@ -7,7 +7,4 @@
 	"title": "EVE Skill Queue",
 	"icon": "icon.png",
 	"uiRevision":2,
-  "characterId":"your character id",
-  "keyId":"your api key id",
-  "vCode":"your api key"
 }

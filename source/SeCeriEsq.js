@@ -2,23 +2,39 @@ enyo.kind({
 	name: "EveSkillQueue",
 	kind: enyo.VFlexBox,
 	components: [
-		{name: "pageHeader",
-      kind: "PageHeader", components: [
-			{content: "Skill Queue"}
-		]},
-		{flex: 1, kind: "Pane", components: [
-			{flex: 1, kind: "Scroller", components: [
-        {kind: "CharacterInfo", name: "characterInfo"},
-        {kind: "SkillInTraining", name: "skillInTraining"}
-			]}
-		]},
-		{kind: "Toolbar", components: [
-      {content: "Update Character Sheet", kind: "Button", onclick: "updateCharacterSheet"}
-		]}
+    {name: "pane", kind: "Pane", flex: 1, components: [
+      {name: "characterSheet", kind: "CharacterSheet" },
+      {
+        name: "preferences", 
+        kind: "Preferences",
+        className: "enyo-bg",
+        onReceive: "preferencesReceived",
+        onSave: "preferencesSaved",
+        onCancel: "goBack"
+        
+      }
+    ]},
+    {kind: "AppMenu", components: [
+      {caption: "Preferences", onclick: "showPreferences", onBack: "goBack"}
+    ]},
+    {kind: "enyo.ApplicationEvents", onBack: "goBack"}
+
 	],
 
-  updateCharacterSheet: function () {
-    this.$.characterInfo.fetchCharacterSheet();
-    this.$.skillInTraining.fetchSkillInTraining();
+  showPreferences: function() {
+    this.$.pane.selectViewByName("preferences");
   },
+
+  preferencesSaved: function() {
+    this.$.pane.back();
+  },
+
+  goBack: function (inSender, inEvent) {
+    this.$.pane.back(inEvent);
+  }, 
+
+  backHandler: function (inSender, inEvent) {
+    this.$.pane.back(inEvent);
+    inEvent.stopPropagation();
+  }
 });
