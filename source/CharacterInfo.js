@@ -29,7 +29,7 @@ enyo.kind({
         keyId = character.keyId,
         vCode = character.vCode;
     if (characterId && keyId && vCode) {
-      var query = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20xml%20where%20url%20%3D%20%22https%3A%2F%2Fapi.eveonline.com%2Fchar%2FCharacterSheet.xml.aspx%3FkeyID%3D'+ keyId +'%26characterID%3D'+ characterId +'%26vCode%3D'+ vCode +'%22&format=json&callback=';
+      var query = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20xml%20where%20url%20%3D%20%22https%3A%2F%2Fapi.eveonline.com%2Fchar%2FCharacterSheet.xml.aspx%3FkeyID%3D'+ keyId +'%26characterID%3D'+ characterId +'%26vCode%3D'+ vCode +'%22&format=json&callback=';
       this.$.getCharacterSheet.setUrl(query);
       this.$.getCharacterSheet.call();
     } else {
