@@ -2,6 +2,9 @@ enyo.kind({
   name: "CharacterInfo",
   kind: "RowGroup", 
   caption: "Character info", 
+  published: {
+    characterName: "",
+  },
   components: [
     {name: "getCharacterSheet", 
       kind: "WebService", 
@@ -32,7 +35,8 @@ enyo.kind({
 
   gotCharacterSheet: function (inSender, inResponse) {
     var characterSheet = inResponse.query.results.eveapi;
-    this.$.characterName.setContent(characterSheet.result.name);
+    this.characterName = characterSheet.result.name;
+    this.$.characterName.setContent(this.characterName);
     this.$.characterRace.setContent(characterSheet.result.race);
     this.$.characterCloneGrade.setContent(characterSheet.result.cloneName);
     this.$.characterCloneSkillPoints.setContent(characterSheet.result.cloneSkillPoints);

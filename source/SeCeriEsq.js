@@ -2,11 +2,8 @@ enyo.kind({
 	name: "EveSkillQueue",
 	kind: enyo.VFlexBox,
 	components: [
-    {name: "getCharacterSheet", 
-      kind: "WebService", 
-      onSuccess: "gotCharacterSheet", 
-      onFailure: "gotCharacterSheetFailure"},
-		{kind: "PageHeader", components: [
+		{name: "pageHeader",
+      kind: "PageHeader", components: [
 			{content: "Skill Queue"}
 		]},
 		{flex: 1, kind: "Pane", components: [
