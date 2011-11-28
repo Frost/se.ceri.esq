@@ -1,6 +1,6 @@
 enyo.kind({
   name: "CharacterInfo",
-  kind: "Group", 
+  kind: "RowGroup", 
   caption: "Character info", 
   components: [
     {name: "getCharacterSheet", 
@@ -8,16 +8,16 @@ enyo.kind({
       onSuccess: "gotCharacterSheet", 
       onFailure: "gotCharacterSheetFailure"},
     {kind: "HFlexBox", flex: 1, components: [
-      {kind: "Item", content: "Name", flex: 1},
-      {kind: "Item", name: "characterName", flex: 1}
+      {content: "Name", flex: 1},
+      {name: "characterName", flex: 1}
     ]},
     {kind: "HFlexBox", flex: 1, components: [
-      {kind: "Item", content: "Race", flex: 1},
-      {kind: "Item", name: "characterRace", flex: 1}
+      {content: "Race", flex: 1},
+      {name: "characterRace", flex: 1}
     ]},
     {kind: "HFlexBox", flex: 1, components: [
-      {kind: "Item", name: "characterCloneGrade", content: "Clone grade", flex: 1},
-      {kind: "Item", name: "characterCloneSkillPoints", flex: 1}
+      {name: "characterCloneGrade", content: "Clone grade", flex: 1},
+      {name: "characterCloneSkillPoints", flex: 1}
     ]},
   ],
   fetchCharacterSheet: function () {
