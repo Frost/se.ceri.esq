@@ -10,23 +10,27 @@ enyo.kind({
     onTriggered: ""
   },
   
-  create: function() {
+  create: function () {
     this.inherited(arguments);
     this.calculateTimeRemainingObject();
     this.start();
   },
 
-  destroy: function() {
-    window.clearInterval(this.job);
+  destroy: function () {
+    this.stop();
   },
 
-  start: function() {
-    if (this.seconds > 0 ) {
+  start: function () {
+    if (this.seconds > 0) {
       this.job = window.setInterval(enyo.hitch(this, "timer"), this.baseInterval);
     }
   },
+
+  stop: function () {
+    window.clearInterval(this.job);
+  },
   
-  decrement: function() {
+  decrement: function () {
     this.setSeconds(this.getSeconds() - this.getDecrementBy());
   },
 
@@ -73,7 +77,7 @@ enyo.kind({
     return out;
   },
 
-  timer: function() {
+  timer: function () {
     if (this.seconds > 0) {
       this.doTriggered(); // onödig?
       this.decrement();

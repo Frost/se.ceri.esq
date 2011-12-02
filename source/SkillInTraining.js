@@ -40,6 +40,7 @@ enyo.kind({
   },
 
   gotSkillInTraining: function (inSender, inResponse) {
+    this.$.remainingTime.stop();
     var characterSheet = inResponse.query.results.eveapi;
     var levels = [null, "I", "II", "III", "IV", "V"];
     var skill = characterSheet.result.trainingTypeID + " " + levels[characterSheet.result.trainingToLevel];
