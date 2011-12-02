@@ -38,7 +38,7 @@ enyo.kind({
     };
 
     var cookie = enyo.getCookie("se.ceri.esq.Preferences");
-    this.log(cookie);
+
     if (cookie) {
       enyo.application.appPrefs = enyo.mixin(enyo.application.appPrefs, enyo.json.parse(cookie));
       this.$.characterIdInput.setValue(enyo.application.appPrefs.character.characterId);
