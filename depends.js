@@ -4,5 +4,7 @@ enyo.depends(
 	"source/CharacterSheet.js",
 	"source/SkillInTraining.js",
 	"source/Preferences.js",
-	"source/EveSkillQueue.css"
+	"source/EveSkillQueue.css",
+	"source/EveSkillQueue.css",
+	"source/CountdownTimer.js"
 );

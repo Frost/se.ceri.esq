@@ -12,13 +12,18 @@ enyo.kind({
       {name: "currentlyTraining", flex: 1}
     ]},
     {kind: "HFlexBox", flex: 1, components: [
+      {content: "Time remaining", flex: 1},
+      {name: "remainingTime", kind: "CountdownTimer", seconds: 0, onTriggered: "updateTimerContent"},
+      {name: "remainingSeconds", flex: 1}
+    ]},
+    {kind: "HFlexBox", flex: 1, components: [
       {content: "TQ Time", flex: 1},
       {name: "currentTQTime", flex: 1}
     ]},
     {kind: "HFlexBox", flex: 1, components: [
       {content: "Finishes at", flex: 1},
       {name: "trainingEndTime", flex: 1}
-    ]}
+    ]},
   ],
   fetchSkillInTraining: function () {
     var character = enyo.application.appPrefs.character,
@@ -41,9 +46,19 @@ enyo.kind({
     this.$.currentlyTraining.setContent(skill);
     this.$.currentTQTime.setContent(characterSheet.result.currentTQTime.content);
     this.$.trainingEndTime.setContent(characterSheet.result.trainingEndTime);
+   
+    var currentTime = new Date(characterSheet.result.currentTQTime.content.replace(/-/g, "/"));
+    var endTime = new Date(characterSheet.result.trainingEndTime.replace(/-/g, "/"));
+    var secondsRemaining = (endTime - currentTime) / 1000;
+    this.$.remainingTime.setSeconds(secondsRemaining);
+    this.$.remainingTime.start();
   },
 
   gotSkillInTrainingFailure: function (inSender, inResponse) {
     
+  },
+
+  updateTimerContent: function () {
+    this.$.remainingSeconds.setContent(this.$.remainingTime.timeRemaining());
   }
 });
