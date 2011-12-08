@@ -22,21 +22,17 @@ enyo.kind({
       ]
     },
     {kind: "HFlexBox", flex: 1, components: [
-      {content: "Skill", flex: 1},
-      {name: "currentlyTraining", flex: 1}
-    ]},
-    {kind: "HFlexBox", flex: 1, components: [
-      {content: "Time remaining", flex: 1},
+      {name: "currentlyTraining", content: "--", flex: 1},
       {name: "remainingTime", kind: "CountdownTimer", seconds: 0, onTriggered: "updateTimerContent"},
-      {name: "remainingSeconds", flex: 1}
+      {name: "remainingSeconds"}
     ]},
     {kind: "HFlexBox", flex: 1, components: [
-      {content: "TQ Time", flex: 1},
-      {name: "currentTQTime", flex: 1}
+      {content: "TQ Time"},
+      {name: "currentTQTime", flex: 1, className: "right"}
     ]},
     {kind: "HFlexBox", flex: 1, components: [
-      {content: "Finishes at", flex: 1},
-      {name: "trainingEndTime", flex: 1}
+      {content: "Finishes at"},
+      {name: "trainingEndTime", flex: 1, className: "right"}
     ]},
   ],
 
