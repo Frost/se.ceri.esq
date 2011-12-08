@@ -11,6 +11,7 @@ enyo.kind({
     ]},
   ],
   updateCharacterSheet: function () { 
+    enyo.log("Updating Character Sheet");
     this.$.characterInfo.fetchCharacterSheet(); 
     this.$.skillInTraining.fetchSkillInTraining(); 
   } 

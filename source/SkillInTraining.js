@@ -2,11 +2,25 @@ enyo.kind({
   name: "SkillInTraining",
   kind: "RowGroup", 
   caption: "Currently Training", 
+  published: {
+    skill: {},
+    level: "",
+    levels: [null, "I", "II", "III", "IV", "V"]
+  },
   components: [
     {name: "getSkillInTraining", 
       kind: "WebService", 
       onSuccess: "gotSkillInTraining", 
       onFailure: "gotSkillInTrainingFailure"},
+    {
+      name: "skillFinder", 
+      kind: "DbService", 
+      dbKind: "se.ceri.esq.Skill:1", 
+      onFailure: "skillFailure", 
+      components: [
+        {name: "findSkill", method: "find", onSuccess: "skillFound"}
+      ]
+    },
     {kind: "HFlexBox", flex: 1, components: [
       {content: "Skill", flex: 1},
       {name: "currentlyTraining", flex: 1}
@@ -25,7 +39,9 @@ enyo.kind({
       {name: "trainingEndTime", flex: 1}
     ]},
   ],
+
   fetchSkillInTraining: function () {
+    enyo.log("fetching skill in training");
     var character = enyo.application.appPrefs.character,
         characterId = character.characterId,
         keyId = character.keyId,
@@ -40,11 +56,25 @@ enyo.kind({
   },
 
   gotSkillInTraining: function (inSender, inResponse) {
-    this.$.remainingTime.stop();
+    enyo.log("got /SkillInTraining")
     var characterSheet = inResponse.query.results.eveapi;
-    var levels = [null, "I", "II", "III", "IV", "V"];
-    var skill = characterSheet.result.trainingTypeID + " " + levels[characterSheet.result.trainingToLevel];
-    this.$.currentlyTraining.setContent(skill);
+
+    this.$.remainingTime.stop();
+    
+    this.level = this.levels[characterSheet.result.trainingToLevel];
+
+    this.$.findSkill.call({
+      query: {
+        "from": "se.ceri.esq.Skill:1", 
+        "where": [{
+          "prop": "typeID", 
+          "op": "=", 
+          "val": characterSheet.result.trainingTypeID
+        }]
+      }, 
+      count: true
+    });
+
     this.$.currentTQTime.setContent(characterSheet.result.currentTQTime.content);
     this.$.trainingEndTime.setContent(characterSheet.result.trainingEndTime);
    
@@ -56,10 +86,28 @@ enyo.kind({
   },
 
   gotSkillInTrainingFailure: function (inSender, inResponse) {
-    
+    enyo.log("gotSkillInTrainingFailure: ");
+    enyo.log(inResponse);
   },
 
   updateTimerContent: function () {
     this.$.remainingSeconds.setContent(this.$.remainingTime.timeRemaining());
-  }
+  }, 
+
+  skillFound: function (inSender, inResponse) {
+    enyo.log("skill found");
+
+    if (inResponse.returnValue === true && inResponse.results.length > 0) {
+      this.skill = inResponse.results[0];
+      var skillString = this.skill.typeName + " " + this.level;
+      this.$.currentlyTraining.setContent(skillString);
+      enyo.log("current skill: " + skillString);
+    }
+
+  },
+  
+  skillFailure: function (inSender, inResponse) {
+    enyo.log("skill failure");
+    enyo.log(inResponse);
+  },
 });

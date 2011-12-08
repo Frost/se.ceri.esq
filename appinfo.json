@@ -1,10 +1,10 @@
 {
-	"id": "se.ceri.esq",
-	"version": "0.0.1",
-	"vendor": "ceri.se",
-	"type": "web",
-	"main": "index.html",
-	"title": "EVE Skill Queue",
-	"icon": "icon.png",
-	"uiRevision":2,
+  "id": "se.ceri.esq",
+  "version": "0.0.3",
+  "vendor": "ceri.se",
+  "type": "web",
+  "main": "index.html",
+  "title": "EVE Skill Queue",
+  "icon": "icon.png",
+  "uiRevision": 2
 }

@@ -1,10 +1,11 @@
 enyo.depends(
-	"source/SeCeriEsq.js",
 	"source/CharacterInfo.js",
 	"source/CharacterSheet.js",
-	"source/SkillInTraining.js",
+	"source/CountdownTimer.js",
+	"source/DbSetup.js",
+	"source/EveSkillQueue.css",
+	"source/EveSkillQueue.js",
 	"source/Preferences.js",
-	"source/EveSkillQueue.css",
-	"source/EveSkillQueue.css",
-	"source/CountdownTimer.js"
+	"source/SkillInTraining.js",
+	"source/SkillTree.js"
 );

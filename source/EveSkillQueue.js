@@ -2,6 +2,7 @@ enyo.kind({
 	name: "EveSkillQueue",
 	kind: enyo.VFlexBox,
 	components: [
+    {name: "dbSetup", kind: "DbSetup"},
     {name: "pane", kind: "Pane", flex: 1, components: [
       {name: "characterSheet", kind: "CharacterSheet" },
       {
