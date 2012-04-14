@@ -1,5 +1,7 @@
 enyo.depends(
 	"source/CharacterInfo.js",
+  "source/CharacterList.js",
+  "source/CharacterListItem.js",
 	"source/CharacterSheet.js",
 	"source/CountdownTimer.js",
 	"source/DbSetup.js",
@@ -7,5 +9,7 @@ enyo.depends(
 	"source/EveSkillQueue.js",
 	"source/Preferences.js",
 	"source/SkillInTraining.js",
-	"source/SkillTree.js"
+	"source/SkillTree.js",
+  "source/SkillQueueUpdater.js",
+  "source/TimeDiffCalculator.js"
 );

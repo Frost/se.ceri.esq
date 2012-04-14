@@ -1,6 +1,9 @@
 enyo.kind({
   name: "DbSetup",
   kind: enyo.Component,
+  events: {
+    "onSetupFinished": ""
+  },
   components: [
     {
       name: "getSkillTree", 
@@ -113,5 +116,6 @@ enyo.kind({
     } else {
       this.fetchSkillTree();
     }
+    this.doSetupFinished();
   }
 });
